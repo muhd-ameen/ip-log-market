@@ -2,7 +2,14 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
- res.send(`
+    // Log IP immediately when page loads
+    console.log('Initial Visit:', JSON.stringify({
+      type: 'page_load',
+      ip: req.ip,
+      headers: req.headers,
+      timestamp: new Date().toISOString()
+    }, null, 2));
+   res.send(`
    <!DOCTYPE html>
    <html>
    <head>
